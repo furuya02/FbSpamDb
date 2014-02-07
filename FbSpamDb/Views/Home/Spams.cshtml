@@ -1,0 +1,133 @@
+﻿@using FbSpamDb.Models
+<div class="alert alert-danger" id="alert">処理中....</div>
+
+<div id="send_spam_url">
+    <button class="btn btn-default" onclick="Create()">スパム登録</button> <span id="error_msg"></span>
+    <input type="text" class="form-control" id="url" name="url" placeholder="URLを入力してください" onfocus="ErrorCls()">
+</div>
+
+<div class="btn-group" data-toggle="buttons-radio">
+    <button id="OrderCreateAt" class="btn btn-default" onclick="Order('CreateAt')">登録順</button>
+    <button id="OrderName" class="btn btn-default" onclick="Order('Name')">名前順</button>
+    <button id="OrderGender" class="btn btn-default" onclick="Order('Gender')">性別順</button>
+    <button id="OrderId" class="btn btn-default" onclick="Order('Id')">ID順</button>
+    <button id="OrderJpg" class="btn btn-default" onclick="Order('Jpg')">画像順</button>
+</div>
+
+<table class="table table-bordered">
+    <tr id="result" />
+</table>
+
+@section Scripts {
+    <script>
+        $("#tab_spams").addClass("active");//タブ反転表示
+        SetOrder("CreateAt");
+
+        AppendTable("GetSpam", "@(ViewBag.UserId)", "@(ViewBag.AccessToken)", - 1, 0, 0, "CreateAt");//再帰開始
+
+        function ErrorCls() {
+            $("#error_msg").html("");
+        }
+
+        function UrlCls() {
+            $("#url").val("");
+        }
+
+        function Order(order) {
+
+            SetOrder(order);
+            $("#result").prevAll().remove();
+            req.abort();
+            AppendTable("GetSpam", "@(ViewBag.UserId)", "@(ViewBag.AccessToken)", - 1, 0, 1, order); //再帰処理
+        }
+
+        function Create() {
+            $.ajax({
+                type: 'POST',
+                url: '/Home/Create',
+                data: {
+                    userId: '@(ViewBag.UserId)',
+                    accessToken: '@(ViewBag.AccessToken)',
+                    url: $("#url").val(),
+                    order: "CreateAt"
+                },
+                success:
+                    function(data) {
+                        ErrorCls();
+                        UrlCls();
+                        $("#result").prevAll().remove();
+                        AppendTable("GetSpam", "@(ViewBag.UserId)", "@(ViewBag.AccessToken)" ,- 1, 0, 1, "CreateAt"); //再帰処理
+                    },
+                error: //complete
+                    function(data, status, msg) {
+                        $("#error_msg").html(data.responseText);
+                    }
+            });
+
+        }
+        
+        function Report(self, id, name) {
+            if (!confirm("[" + name + "]が、スパムではない事を通報しますか")) {
+                return;
+            }
+            $.ajax({
+                type: 'POST',
+                url: '/Home/Report',
+                data: {
+                    userId: '@(ViewBag.UserId)',
+                    accessToken: '@(ViewBag.AccessToken)',
+                    id: id,
+                },
+                success:
+                    function (data, status, msg) {
+                        alert(data);
+                    },
+                error:
+                    function (data, status, msg) {
+                        alert(data.responseText);
+                    }
+            });
+        }
+        
+
+        function Delete(self, id, name) {
+            if (!confirm("[" + name + "]を削除して宜しいですか")) {
+                return;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '/Home/Delete',
+                data: {
+                    userId:'@(ViewBag.UserId)',
+                    accessToken: '@(ViewBag.AccessToken)',
+                    id: id,
+                    order: "CreateAt"
+                },
+                success:
+                    function(data) {
+                        $(self).parent().remove();
+                    },
+                error:
+                    function(data, status, msg) {
+                        alert(data.responseText); //エラーメッセージ
+                    }
+            });
+
+        }
+        
+        function SetPublic(self, id, isPublic) {
+            location.href = "/Home/SetPublic?id="+id+"&isPublic="+isPublic;
+        }
+        
+
+        //name = "Name","CreateAt","Id","Gender","Jpg"
+        function SetOrder(name) {
+            $('button[id^=Order]').removeClass('active');
+            $('button[id=Order' + name + ']').addClass('active');
+
+
+        }
+
+    </script>
+}

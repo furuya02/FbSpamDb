@@ -1,0 +1,22 @@
+﻿@model FbSpamDb.Models.ViewUserNormal
+
+@{
+    var str = "oneUser";
+    if (@Model.IsSpam) {
+        str = str + " public";
+    }
+}
+<div class="@(str)">
+    <a href="https://www.facebook.com/@Model.Id" target="_blank" title="
+@Model.Name
+ID:@Model.Id">
+        <img class=" oneImage" src="@Model.PictureUrl" />
+        <span class="oneName">@Model.Name</span>
+    </a>
+    @if (ViewBag.IsManager != null && ViewBag.IsManager) {
+        <a title="スパム登録" data-ajax="true" data-ajax-mode="replace" href="/Home/Create/@Model.Id">登録</a>
+    }
+
+
+</div>
+

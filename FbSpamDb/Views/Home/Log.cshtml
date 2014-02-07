@@ -1,0 +1,57 @@
+﻿@model IEnumerable<FbSpamDb.Models.DbLog>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Host)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Addr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserAgent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateAt)
+        </td>
+        <td>
+            <a href="http://www.facebook.com/@Html.DisplayFor(modelItem => item.UserId)" target="_blank">@Html.DisplayFor(modelItem => item.UserId)</a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Host)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Addr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserAgent)
+        </td>
+        <td>
+            @switch (@item.Status) {
+                case 0:<text>OAuth</text>
+                    break;
+                case 1:<text>Friends</text>
+                    break;
+                case 2:<text>Requests</text>
+                    break;
+                case 3:<text>Spams</text>
+                    break;
+            }
+        </td>
+    </tr>
+}
+
+</table>

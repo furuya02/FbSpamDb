@@ -1,0 +1,12 @@
+﻿<div class="alert alert-info" id="alert">処理中....</div>
+
+<table class="table table-bordered">
+    <tr id="result" />
+</table>
+
+@section Scripts {
+    <script>
+        $("#tab_requests").addClass("active");//タブ反転表示
+        AppendTable("GetRequest", "@(ViewBag.UserId)", "@(ViewBag.AccessToken)" ,- 1, 0, 0);//再帰開始
+    </script>
+}

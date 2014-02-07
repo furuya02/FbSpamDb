@@ -1,0 +1,39 @@
+﻿@model FbSpamDb.Models.ViewUserSpam
+
+@{
+    var str = "oneUser spam";
+    if (@Model.IsPublic) {
+        str += " public";
+    }
+}
+<div class="@(str)">
+    <a href="https://www.facebook.com/@Model.Id" target="_blank" title="
+@Model.Name
+id:@Model.Id
+登録日時:@Model.CreateAt
+投稿者:@Model.Id">
+        <img class=" oneImage" src="@Model.PictureUrl" />
+        <span class="oneName">@Model.Name</span>
+        <br /><div class="oneId">@Model.Id</div><br/>
+    </a>
+    @if (!@Model.IsPublic && @Model.IsMine){
+        <label class="oneIcon" title="データベースから削除する" onclick="Delete(this, '@Model.Id', '@Model.Name') "><i class="glyphicon glyphicon-trash"></i></label>
+    } else{
+        <label class="oneIcon" title="スパムでないことを通報する" onclick="Report(this, '@Model.Id', '@Model.Name') "><i class="glyphicon glyphicon glyphicon-exclamation-sign"></i></label>
+    }
+    @if (@ViewBag.IsManager){
+        if (@Model.IsPublic){
+            <label class="oneIcon" title="非公開にする" onclick=" SetPublic(this, '@Model.Id', '0') "><i class="glyphicon glyphicon-globe"></i></label>
+        } else{
+            <label class="oneIcon" title="公開する" onclick=" SetPublic(this, '@Model.Id', '1') "><i class="glyphicon glyphicon-user"></i></label>
+        }
+    } else {
+        if (@Model.IsPublic) {
+            <label title="公開されているデータです" class="icon-next"><i class="glyphicon glyphicon-globe" /></label>
+        } else {
+            <label title="非公開の個人用データです"><i class="glyphicon glyphicon-user" /></label>
+        }
+    }
+
+</div>
+

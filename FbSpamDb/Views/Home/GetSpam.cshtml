@@ -1,0 +1,22 @@
+﻿@model IEnumerable<FbSpamDb.Models.ViewUserSpam>
+@ViewBag.Max
+$
+@ViewBag.Spam
+$
+@ViewBag.Alert
+$
+@{
+    var i = 0;
+}
+
+@foreach (var item in @Model) {
+    if (i % 3 == 0) {
+        <text><tr>
+        </text>
+    }
+    <td id="oneTd">
+        @Html.Partial("OneSpam", @item)
+    </td>
+    i++;
+}
+

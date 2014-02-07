@@ -1,0 +1,55 @@
+﻿<h1>1 「Facebookスパムデータベース」とは</h1>
+「Facebookスパムデータベース」とは、スパムアカウントのデータベースを使用して、あなたの「友達一覧」や「友達リクエスト」の中に、スパムアカウントが含まれていないかを確認するアプリです。
+スパムデータベースは利用者の報告によって逐次追加されます。
+
+<h1>2 各メニューの動作</h1>
+<h2>(1) すべての友達</h2>
+<p>
+    <img src="~/Images/about_001.jpg" class="about_img" />
+    あなたの友達一覧を表示し、その中にスパムが含まれていないかどうかの判定を行います。定期的に確認することで、意に反してスパムが紛れ込んでないかを確認できます。
+</p>
+<div class="clear"/>
+<p>
+    <img src="~/Images/about_002.jpg" class="about_img" />
+    もし、スパムが含まれていた場合、図のようにアラートが表示されます。
+</p>
+<h2>(2) 友達リクエスト</h2>
+<p>
+    <img src="~/Images/about_003.jpg" class="about_img" />
+    現在到着している友達リクエストを表示し、その中にスパムが含まれていないかどうかの判定を行います。誰だかピント来ないリクエストが来たとき、ここで確認してみることをお勧めします。
+    
+</p>
+<h2>(3) スパムデータべース</h2>
+<p>
+    <img src="~/Images/about_004.jpg" class="about_img" />
+    現在、登録されているスパムが一覧されます。
+    <br /><br/>新たなスパムを発見した場合は、そのURLを入力して「スパム登録」のボタンを押してください。登録が完了すると、「<i class=" glyphicon glyphicon-user"></i>:非公開データ」として、自分専用のデータとなります。
+    <br /><br />立派なスパムであると判断された場合は、管理者によって「<i class="glyphicon glyphicon-globe"></i>:公開データ」に変更され、すべての利用者で共有されます。
+    
+</p>
+<div class="clear"/>
+<div>
+    「<i class=" glyphicon glyphicon-user"></i>:非公開データ」は、いつでも、<i class="glyphicon glyphicon-trash"></i>アイコンから削除することができます。
+    <img src="~/Images/about_005.jpg" />
+
+</div>
+<div class="clear" />
+<div>
+    「<i class=" glyphicon glyphicon-globe"></i>:公開データ」の中に、スパムでは無いアカウントを発見した場合は、<i class="glyphicon  glyphicon-exclamation-sign"></i>アイコンから管理者に通報してください。
+    <img src="~/Images/about_006.jpg" />
+
+</div>
+<h1>3 FBSpamdb Community</h1>
+<p><a href="https://www.facebook.com/pages/FBSpamdb-Community/632914700109218/" target="_blank">FBSpamdb Community</a>は、このアプリのポータルサイトです。</p>
+<p>ご意見、ご要望などがございましたら、こちらへお願いします。</p>
+<p>また、最新情報なども逐次公開させて頂きます。</p>
+
+
+
+
+@section Scripts {
+    <script>
+        $("#tab_about").addClass("active");//タブ反転表示
+    </script>
+}
+

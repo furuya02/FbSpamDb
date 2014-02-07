@@ -1,0 +1,80 @@
+﻿@{
+
+}
+<button class="btn btn-success" onclick="Log()">Log</button>
+<button class="btn btn-danger" onclick="LogDelete()">LogDelete</button>
+<button class="btn btn-info" onclick="Backup()">Backup</button>
+
+<div id="result" />
+
+
+@using (Ajax.BeginForm("Search", new AjaxOptions() { UpdateTargetId = "searchResult" })) {
+    <input type="text" name="searchString" /><input type="submit" class="btn btn-primary" value="SEARCH" />
+}
+
+<div id="searchResult" />
+
+@section Scripts {
+    <script>
+        //ナビゲートタブ
+        $("#tab_admin").addClass("active");
+
+        function Backup() {
+            $.ajax({
+                type: 'POST',
+                url: '/Home/Backup',
+                data: {
+                },
+                success:
+                    
+                    function (data) {
+                        $("#result").html(data);
+                    },
+                error: //complete
+                    function (data, status, msg) {
+                        alert(data.responseText);
+                    }
+            });
+            
+        }
+
+        function Log() {
+            $.ajax({
+                type: 'POST',
+                url: '/Home/Log',
+                data: {
+                },
+                success:
+
+                    function (data) {
+                        $("#result").html(data);
+                    },
+                error: //complete
+                    function (data, status, msg) {
+                        alert(data.responseText);
+                    }
+            });
+
+        }
+        
+        function LogDelete() {
+            $.ajax({
+                type: 'POST',
+                url: '/Home/LogDelete',
+                data: {
+                },
+                success:
+
+                    function (data) {
+                        $("#result").html(data);
+                    },
+                error: //complete
+                    function (data, status, msg) {
+                        alert(data.responseText);
+                    }
+            });
+
+        }
+
+    </script>
+}

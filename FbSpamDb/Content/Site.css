@@ -1,0 +1,156 @@
+﻿* {
+    font-family: "メイリオ", Arial;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+}
+h1 {
+    font-size: 20px;
+    clear: both;
+    border-bottom: 1px solid #4060a0; 
+    border-left: 15px solid #4060a0; 
+    padding: 3px;
+}
+h2 {
+    font-size: 17px;
+    clear: both;
+    border-bottom: 1px solid #4060a0;
+    padding: 3px;
+    padding-top: 15px;
+}
+    
+
+.clear {
+    clear: both;
+}
+
+.about_img {
+    float: left;
+}
+
+#main {
+    background-color: #eaebed;
+    border: solid 1px #4060a0;
+}
+
+header {
+    background-color: #4060a0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    padding: 3px 3px 0 3px;
+    margin-top: 5px;
+    border-radius: 5px 5px 0 0;
+}
+footer {
+    background-color: #4060a0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    border-radius: 0 0 5px 5px;
+    padding: 10px;
+}
+
+#send_spam_url {
+    background-color: white;
+    border: solid 1px #4060a0;
+    margin: 0px;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+
+#send_spam_url {
+    background-color: white;
+    border: solid 1px #4060a0;
+    margin: 0px;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+#url {
+    margin-top: 7px;
+}
+
+#error_msg {
+    padding: 20px;
+    color: red;
+}
+
+#oneTd {
+    padding: 1px;
+}
+
+.oneUser {
+    width: 247px;
+    height: 52px;
+    text-overflow: ellipsis;
+}
+
+.oneImage {
+    width: 50px;
+    height: 50px;
+    float: left;
+}
+
+.oneUser a {
+    text-decoration: none;
+    color: #4060a0;
+}
+
+.oneUser a:hover {
+    color: #aaaaff;
+}
+
+.oneIcon {
+    display: inline;
+    cursor: pointer;
+    color: #4060a0;
+}
+.oneIcon:hover{
+    color: #aaaaff;
+}
+
+.oneName {
+    margin-right: 0px;
+    float: left;
+}
+
+.oneJpgInfo {
+    margin-right: 0px;
+}
+
+.oneId {
+    margin-right: 0px;
+    float: left;
+}
+
+.oneIcon {
+    margin-right: 0px;
+}
+
+
+
+.spam {
+    background-color: rgba(255,230,230,1);
+}
+
+.public {
+    background-color: rgba(255,180,180,1);
+    border: solid 1px #ff0000;
+}
+
+.alert {
+    margin-bottom: 0px;
+}
+.table {
+    margin-bottom: 0px;
+}
+
+.nav a {
+    color: white;
+    font-weight: bold;
+}
+.nav a:hover {
+    color: #4060a0;
+}

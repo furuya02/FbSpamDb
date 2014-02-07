@@ -1,0 +1,15 @@
+﻿
+@model IEnumerable<FbSpamDb.Models.DbSpam>
+
+@{
+
+}
+<form action="/Home/Restore" method="POST">
+    <textarea cols="50" rows="20" name="backup">
+        @foreach (var m in @Model) {
+            var s = String.Format("{0},{1},{2},{3}\n", m.Id, m.OwnerId, m.CreateAt, m.IsPublic);
+            @s
+        }
+    </textarea>
+    <input type="submit" class="btn btn-danger" value="RESTORE" />
+</form>

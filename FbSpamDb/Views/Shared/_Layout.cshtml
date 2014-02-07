@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Facebook Spam Database</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+
+</head>
+<body>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '@Microsoft.AspNet.Mvc.Facebook.GlobalFacebookConfiguration.Configuration.AppId', // App ID
+                status: true, // ログイン状態の確認
+                cookie: true, // Cookie を有効にして、サーバーがセッションにアクセスすることを許可する
+                xfbml: true  // XFBML の解析
+            });
+            FB.Canvas.setAutoGrow();//縦スクロールバーの消去
+
+        };
+        
+        // SDK を非同期に読み込む
+        (function (d) {
+            var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement('script'); js.id = id; js.async = true;
+            js.src = "//connect.facebook.net/en_US/all.js";
+            ref.parentNode.insertBefore(js, ref);
+        }(document));
+        
+    </script>
+    
+    @{
+        var optStr = "";
+        if (@ViewBag.AccessToken != null) {
+            optStr = "?AccessToken=" + @ViewBag.AccessToken + "&UserId=" + @ViewBag.UserId;
+        }
+    }
+
+    <div id="wrapper">
+        <header>
+            <ul class="nav nav-tabs">
+                <li id="tab_friends">
+                    <a href="/Home/Friends@(optStr)">すべての友達</a>
+                </li>
+                <li id="tab_requests">
+                    <a href="/Home/Requests@(optStr)">友達リクエスト</a>
+                </li>
+                <li id="tab_spams"><a href="/Home/Spams@(optStr)">スバムDB</a></li>
+                <li id="tab_about"><a href="/Home/About@(optStr)">「Facebookスパムデータベース」について</a></li>
+                <li id="tab_admin"><a href="/Home/Admin@(optStr)">管理</a></li>
+            </ul>
+
+        </header>
+        @RenderBody()
+        <footer>
+            <p>&copy; @DateTime.Now.Year Facebookスパムデータベース</p>
+        </footer>
+    </div>
+    
+    
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/fb_spam_db.js"></script>
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

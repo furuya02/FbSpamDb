@@ -1,0 +1,1 @@
+﻿このテンプレートを構成および使用する方法については、http://go.microsoft.com/fwlink/?LinkId=301873 を参照してください。
